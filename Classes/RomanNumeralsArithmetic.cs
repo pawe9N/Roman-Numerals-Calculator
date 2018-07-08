@@ -12,10 +12,5 @@ namespace RomanNumeralsCalculator.Classes
         {
 
         }
-
-        public int AddVtoVI()
-        {
-            return 11;
-        }
     }
 }

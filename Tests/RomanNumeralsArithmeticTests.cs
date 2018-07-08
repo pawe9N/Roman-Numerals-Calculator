@@ -11,14 +11,6 @@ namespace RomanNumeralsCalculator.Tests
     [TestFixture]
     class RomanNumeralsArithmeticTests
     {
-        [Test]
-        public void AddVitoV_WhenCalled_Return11()
-        {
-            RomanNumeralsArithmetic calc = new RomanNumeralsArithmetic();
-
-            int result = calc.AddVtoVI();
-
-            Assert.AreEqual(11, result);
-        }
+        
     }
 }
