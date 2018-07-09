@@ -76,7 +76,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\RomanNumeralsConverter.cs" />
-    <Compile Include="Tests\RomanNumeralsArithmeticTests.cs" />
+    <Compile Include="Tests\RomanNumeralTests.cs" />
     <Compile Include="Tests\RomanNumeralsConverterTests.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -86,7 +86,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Classes\RomanNumeralsArithmetic.cs" />
+    <Compile Include="Classes\RomanNumeral.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
