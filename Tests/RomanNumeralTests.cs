@@ -70,5 +70,32 @@ namespace RomanNumeralsCalculator.Tests
 
             Assert.AreEqual(expected, result.romanNumeralStr);
         }
+
+        [TestCase("Invalid", "XC")]
+        [TestCase("XC", "Invalid")]
+        [TestCase("Invalid", "Invalid")]
+        [TestCase("Invalid", "")]
+        [TestCase("", "Invalid")]
+        [TestCase("", "")]
+        [TestCase("MMMM", "")]
+        [TestCase("IDLM", "")]
+        [TestCase("MMM", "M")]
+        public void AnyOperator_WithInvalidRomanNumerals_Throws(string a, string b)
+        {
+            try
+            {
+                RomanNumeral romanNumber1 = new RomanNumeral(a);
+                RomanNumeral romanNumber2 = new RomanNumeral(b);
+
+                var result = romanNumber1 + romanNumber2;
+
+                Assert.Fail("Invalid roman numerals should throw!");
+            }
+            catch (ArgumentException ex)
+            {
+                StringAssert.Contains("This isn't roman numeral", ex.Message);
+            }
+
+        }
     }
 }

@@ -32,13 +32,13 @@ namespace RomanNumeralsCalculator.Tests
 
         [TestCase(0)]
         [TestCase(4000)]
-        public void ConvertFromIntToRomanNumeral_IntsAreOutOfRange_ThrowsException(int invalidNumber)
+        public void ConvertFromIntToRomanNumeral_IntsAreOutOfRange_Throws(int invalidNumber)
         {
             RomanNumeralsConverter conv = new RomanNumeralsConverter();
 
             var ex = Assert.Throws<ArgumentException>(() => conv.ConvertFromIntToRomanNumeral(invalidNumber));
 
-            StringAssert.Contains("Invalid number", ex.Message);
+            StringAssert.Contains("This isn't roman numeral", ex.Message);
         }
 
         [TestCase("MMMCMXCIX", 3999)]
@@ -61,7 +61,7 @@ namespace RomanNumeralsCalculator.Tests
         }
 
         [Test]
-        public void ConvertFromRomanNumeralToInt_InvalidRomanNumeral_ThrowsException()
+        public void ConvertFromRomanNumeralToInt_InvalidRomanNumeral_Throws()
         {
             RomanNumeralsConverter conv = new RomanNumeralsConverter();
 
@@ -71,13 +71,37 @@ namespace RomanNumeralsCalculator.Tests
         }
 
         [Test]
-        public void ConvertFromRomanNumeralToInt_SendEmptyString_ThrowsException()
+        public void ConvertFromRomanNumeralToInt_SendEmptyString_Throwsn()
         {
             RomanNumeralsConverter conv = new RomanNumeralsConverter();
 
             var ex = Assert.Throws<ArgumentException>(() => conv.ConvertFromRomanNumeralToInt(""));
 
             StringAssert.Contains("is empty", ex.Message);
+        }
+
+        [TestCase("XXXX")]
+        [TestCase("MXXXX")]
+        [TestCase("MMMCCCCVVIII")]
+        public void ConvertFromRomanNumeralToInt_SendRomanNumeralsWithTooManyTheSameSymbols_Throws(string invalidRomanNumeral)
+        {
+            RomanNumeralsConverter conv = new RomanNumeralsConverter();
+
+            var ex = Assert.Throws<ArgumentException>(() => conv.ConvertFromRomanNumeralToInt(invalidRomanNumeral));
+
+            StringAssert.Contains("too many these same symbols in row", ex.Message);
+        }
+
+        [TestCase("XM")]
+        [TestCase("IM")]
+        [TestCase("VML")]
+        public void ConvertFromRomanNumeralToInt_SendRomanNumeralsWithBadSymbolsPosition_Throws(string invalidRomanNumeral)
+        {
+            RomanNumeralsConverter conv = new RomanNumeralsConverter();
+
+            var ex = Assert.Throws<ArgumentException>(() => conv.ConvertFromRomanNumeralToInt(invalidRomanNumeral));
+
+            StringAssert.Contains("bad format of symbols positions", ex.Message);
         }
     }
 }

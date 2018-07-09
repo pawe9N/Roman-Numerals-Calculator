@@ -9,6 +9,7 @@ namespace RomanNumeralsCalculator.Classes
     class RomanNumeralsConverter
     {
         const int NOT_ROMAN_SYMBOL = -1;
+        const int TOO_MANY_SYMBOLS_IN_ROW = 4;
 
         public RomanNumeralsConverter() { }
 
@@ -16,7 +17,7 @@ namespace RomanNumeralsCalculator.Classes
         {
             if (number > 3999 || number < 1)
             {
-                throw new ArgumentException("Invalid number! In roman numeral notation it doesn't exist!");
+                throw new ArgumentException("This isn't roman numeral! In roman numeral notation it doesn't exist!");
             }
 
             StringBuilder romanNumeral = new StringBuilder();
@@ -70,28 +71,76 @@ namespace RomanNumeralsCalculator.Classes
             return NOT_ROMAN_SYMBOL;
         }
 
-        public int ConvertFromRomanNumeralToInt(string romanNumeral)
+        private void CheckHowManyTimesSymbolInRow(ref int previousSymbol, ref int sameSymbolInRow, int digit)
         {
-            if(string.IsNullOrEmpty(romanNumeral))
+            if(previousSymbol == digit)
             {
-                throw new ArgumentException("Roman numeral is empty!");
+                sameSymbolInRow++;
+            }
+            else
+            {
+                sameSymbolInRow = 1;
+            }
+
+            if (sameSymbolInRow == TOO_MANY_SYMBOLS_IN_ROW)
+            {
+                throw new ArgumentException("This isn't roman numeral! It has too many these same symbols in row!");
+            }
+
+            previousSymbol = digit;
+        }
+
+        private void CheckIfSymbolCanStandOnItsPosition(int digit, int nextDigit)
+        {
+            if(digit < nextDigit)
+            {
+                if(!((digit == 1 && (nextDigit == 5 || nextDigit == 10))
+                    || (digit == 10 && (nextDigit == 50 || nextDigit == 100))
+                    || (digit == 100 && (nextDigit == 500 || nextDigit == 1000))))
+                    {
+                        throw new ArgumentException("This isn't roman numeral! It has bad format of symbols positions in it!");
+                    }
+            }
+        }
+
+        public int ConvertFromRomanNumeralToInt(string romanNumeralStr)
+        {
+            if(string.IsNullOrEmpty(romanNumeralStr))
+            {
+                throw new ArgumentException("This isn't roman numeral! It is empty!");
             }
 
             int result = 0;
+            int previousSymbol = ConvertRomanSymbolToInt(romanNumeralStr[0]);
+            int sameSymbolInRow = 1;
 
-            for(int i=0; i<romanNumeral.Length; i++)
+            int digit = 0,  nextDigit = 0 ;
+
+            for (int i=0; i< romanNumeralStr.Length; i++)
             {
-                int digit = ConvertRomanSymbolToInt(romanNumeral[i]);
+                digit = ConvertRomanSymbolToInt(romanNumeralStr[i]);
+
+                if(i>0)
+                {
+                    CheckHowManyTimesSymbolInRow(ref previousSymbol, ref sameSymbolInRow, digit);
+                }
+
+
+                if (i + 1 < romanNumeralStr.Length)
+                {
+                    nextDigit = ConvertRomanSymbolToInt(romanNumeralStr[i + 1]);
+                    CheckIfSymbolCanStandOnItsPosition(digit, nextDigit);
+                }
 
                 if (digit != NOT_ROMAN_SYMBOL)
                 {
-                    if((i+1 == romanNumeral.Length) || (i+1 < romanNumeral.Length && digit >= ConvertRomanSymbolToInt(romanNumeral[i + 1])))
+                    if(i+1 == romanNumeralStr.Length ||  digit >= nextDigit)
                     {
                         result += digit;
                     }
                     else
                     {
-                        result += ConvertRomanSymbolToInt(romanNumeral[i + 1]) - digit;
+                        result += nextDigit - digit;
                         i++;
                     }
                 }

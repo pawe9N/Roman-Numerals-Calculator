@@ -75,7 +75,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\ONP.cs" />
     <Compile Include="Classes\RomanNumeralsConverter.cs" />
+    <Compile Include="Tests\ONPTests.cs" />
     <Compile Include="Tests\RomanNumeralTests.cs" />
     <Compile Include="Tests\RomanNumeralsConverterTests.cs" />
     <Page Include="MainWindow.xaml">
