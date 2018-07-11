@@ -75,11 +75,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Classes\RNP.cs" />
+    <Compile Include="Classes\RPN.cs" />
     <Compile Include="Classes\RomanExpression.cs" />
     <Compile Include="Classes\RomanExpressionSolver.cs" />
     <Compile Include="Classes\RomanNumeralsConverter.cs" />
-    <Compile Include="Tests\RNPTests.cs" />
+    <Compile Include="Tests\RPNTests.cs" />
+    <Compile Include="Tests\RomanExpressionSolverTests.cs" />
     <Compile Include="Tests\RomanExpressionTests.cs" />
     <Compile Include="Tests\RomanNumeralTests.cs" />
     <Compile Include="Tests\RomanNumeralsConverterTests.cs" />

@@ -11,8 +11,10 @@ namespace RomanNumeralsCalculator.Tests
     [TestFixture]
     class RomanExpressionTests
     {
-        [TestCase("XX + V","20 + 5")]
+        [TestCase("XX + V", "20 + 5")]
         [TestCase("M * XXIX / CD - V % XL", "1000 * 29 / 400 - 5 % 40")]
+        [TestCase("XX + II / XI * IV - III % III", "20 + 2 / 11 * 4 - 3 % 3")]
+        [TestCase("( XX + II ) / XI * IV - III % III", "( 20 + 2 ) / 11 * 4 - 3 % 3")]
         public void ChangeRomanExpressionToNormalExpression_ValidExpression_ReturnNormalExpression(string expression, string expected)
         {
             string result = RomanExpression.ChangeRomanExpressionToNormalExpression(expression);

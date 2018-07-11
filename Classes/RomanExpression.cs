@@ -10,8 +10,8 @@ namespace RomanNumeralsCalculator.Classes
     {
         public static string ChangeRomanExpressionToNormalExpression(string romanExpression)
         {
-            var words = romanExpression.Split(' ');
-            string[] operators = { "+", "-", "*", "/", "%" };
+            var words = romanExpression.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+            string[] operators = { "+", "-", "*", "/", "%", "(", ")" };
             StringBuilder result = new StringBuilder();
             RomanNumeral RN;
 
