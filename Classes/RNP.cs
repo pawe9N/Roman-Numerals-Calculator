@@ -8,7 +8,7 @@ namespace RomanNumeralsCalculator.Classes
 {
     class RNP
     {
-        private byte PriorityOfOperation(char operation)
+        private static byte PriorityOfOperation(char operation)
         {
             if (operation == '+' ||
                 operation == '-')
@@ -24,7 +24,7 @@ namespace RomanNumeralsCalculator.Classes
             return byte.MaxValue;
         }
 
-        public string ConvertToRNP(string expression)
+        public static string ConvertToRNP(string expression)
         {
             StringBuilder result = new StringBuilder();
 
@@ -72,6 +72,15 @@ namespace RomanNumeralsCalculator.Classes
             }
 
             return result.ToString();
+        }
+
+        public static int SolveRNP(string rnp)
+        {
+            int result = 0;
+
+
+
+            return result;
         }
     }
 }

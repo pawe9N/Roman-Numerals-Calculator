@@ -17,9 +17,7 @@ namespace RomanNumeralsCalculator.Tests
         [TestCase("10+100*2/3*(100-1)", "10 100 2 * 3 / 100 1 - * +")]
         public void ConvertToRNP_ValidExpression_ReturnRNP(string expression, string expected)
         {
-            RNP rnp = new RNP();
-
-            string result = rnp.ConvertToRNP(expression);
+            string result = RNP.ConvertToRNP(expression);
 
             Assert.AreEqual(expected, result);
         }

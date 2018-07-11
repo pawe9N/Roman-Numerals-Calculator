@@ -76,8 +76,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\RNP.cs" />
+    <Compile Include="Classes\RomanExpression.cs" />
+    <Compile Include="Classes\RomanExpressionSolver.cs" />
     <Compile Include="Classes\RomanNumeralsConverter.cs" />
     <Compile Include="Tests\RNPTests.cs" />
+    <Compile Include="Tests\RomanExpressionTests.cs" />
     <Compile Include="Tests\RomanNumeralTests.cs" />
     <Compile Include="Tests\RomanNumeralsConverterTests.cs" />
     <Page Include="MainWindow.xaml">
