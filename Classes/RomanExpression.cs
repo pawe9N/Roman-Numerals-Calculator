@@ -8,10 +8,35 @@ namespace RomanNumeralsCalculator.Classes
 {
     class RomanExpression
     {
+        private static string RemoveWhitespace(string expression)
+        {
+            return new string(expression.ToCharArray().Where(c => !Char.IsWhiteSpace(c)).ToArray());
+        }
+
+        public static string AddWhitespacesBetweenOperators(string romanExpression)
+        {
+            romanExpression = RemoveWhitespace(romanExpression);
+            char[] operators = { '+', '-', '*', '/', '%', '^', '√', '(', ')' };
+            StringBuilder result = new StringBuilder();
+            for (int i = 0; i < romanExpression.Length; i++)
+            {
+                if(operators.Contains(romanExpression[i]))
+                {
+                    result.Append($" {romanExpression[i]} ");
+                }
+                else
+                {
+                    result.Append(romanExpression[i]);
+                }    
+            }
+            return result.ToString();
+        }
+
         public static string ChangeRomanExpressionToNormalExpression(string romanExpression)
         {
+            romanExpression = AddWhitespacesBetweenOperators(romanExpression);
             var words = romanExpression.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
-            string[] operators = { "+", "-", "*", "/", "%", "(", ")" };
+            string[] operators = { "+", "-", "*", "/", "%", "^", "√", "(", ")" };
             StringBuilder result = new StringBuilder();
             RomanNumeral RN;
 

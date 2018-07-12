@@ -71,6 +71,29 @@ namespace RomanNumeralsCalculator.Tests
             Assert.AreEqual(expected, result.romanNumeralStr);
         }
 
+        [TestCase("X", "II", "C")]
+        [TestCase("V", "III", "CXXV")]
+        public void OperatorToPowerOf_ValidRomanNumerals_SetsResult(string a, string b, string expected)
+        {
+            RomanNumeral romanNumber1 = new RomanNumeral(a);
+            RomanNumeral romanNumber2 = new RomanNumeral(b);
+
+            RomanNumeral result = romanNumber1 ^ romanNumber2;
+
+            Assert.AreEqual(expected, result.romanNumeralStr);
+        }
+
+        [TestCase("IX", "III")]
+        [TestCase("C", "X")]
+        public void OperatorToPowerOf_ValidRomanNumerals_SetsResult(string a, string expected)
+        {
+            RomanNumeral romanNumber1 = new RomanNumeral(a);
+
+            RomanNumeral result = RomanNumeral.Sqrt(romanNumber1);
+
+            Assert.AreEqual(expected, result.romanNumeralStr);
+        }
+
         [TestCase("Invalid", "XC")]
         [TestCase("XC", "Invalid")]
         [TestCase("Invalid", "Invalid")]

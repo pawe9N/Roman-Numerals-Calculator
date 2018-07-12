@@ -10,18 +10,17 @@ namespace RomanNumeralsCalculator.Classes
     {
         private static byte PriorityOfOperation(char operation)
         {
-            if (operation == '+' ||
-                operation == '-')
+            switch(operation)
             {
-                return 1;
+                case '+':
+                case '-': return 1;
+                case '*':
+                case '/':
+                case '%': return 2;
+                case '^':
+                case '√': return 3;
+                default: return byte.MaxValue;
             }
-            else if (operation == '*' ||
-                operation == '/' ||
-                operation == '%')
-            {
-                return 2;
-            }
-            return byte.MaxValue;
         }
 
         public static string ConvertToRPN(string expression)
@@ -59,7 +58,10 @@ namespace RomanNumeralsCalculator.Classes
                         result.Append(stc.Peek());
                         stc.Pop();
                     }
-                    result.Append(' ');
+                    if(symbol != '√')
+                    {
+                        result.Append(' ');
+                    }
                     stc.Push(symbol);
                 }
             }
@@ -76,51 +78,45 @@ namespace RomanNumeralsCalculator.Classes
 
         private static void ChooseOperator(string word, ref Stack<int> numbers)
         {
-            int number1, number2;
-            switch (word)
+            RomanNumeral number1 = new RomanNumeral(numbers.Peek());
+            numbers.Pop();
+            if (word != "√")
             {
-                case "+":
-                    number1 = numbers.Peek();
-                    numbers.Pop();
-                    number2 = numbers.Peek();
-                    numbers.Pop();
-                    numbers.Push(number2 + number1);
-                    break;
-                case "-":
-                    number1 = numbers.Peek();
-                    numbers.Pop();
-                    number2 = numbers.Peek();
-                    numbers.Pop();
-                    numbers.Push(number2 - number1);
-                    break;
-                case "*":
-                    number1 = numbers.Peek();
-                    numbers.Pop();
-                    number2 = numbers.Peek();
-                    numbers.Pop();
-                    numbers.Push(number2 * number1);
-                    break;
-                case "/":
-                    number1 = numbers.Peek();
-                    numbers.Pop();
-                    number2 = numbers.Peek();
-                    numbers.Pop();
-                    numbers.Push(number2 / number1);
-                    break;
-                case "%":
-                    number1 = numbers.Peek();
-                    numbers.Pop();
-                    number2 = numbers.Peek();
-                    numbers.Pop();
-                    numbers.Push(number2 % number1);
-                    break;
+                RomanNumeral number2 = new RomanNumeral(numbers.Peek());
+                numbers.Pop();
+
+                switch (word)
+                {
+                    case "+":
+                        numbers.Push((number2 + number1).decimalNumber);
+                        break;
+                    case "-":
+                        numbers.Push((number2 - number1).decimalNumber);
+                        break;
+                    case "*":
+                        numbers.Push((number2 * number1).decimalNumber);
+                        break;
+                    case "/":
+                        numbers.Push((number2 / number1).decimalNumber);
+                        break;
+                    case "%":
+                        numbers.Push((number2 % number1).decimalNumber);
+                        break;
+                    case "^":
+                        numbers.Push((number2 ^ number1).decimalNumber);
+                        break;
+                }
+            }
+            else
+            {
+                numbers.Push(RomanNumeral.Sqrt(number1).decimalNumber);
             }
         }
 
         public static int SolveRPN(string RPN)
         {
             var words = RPN.Split(' ');
-            string[] operators = { "+", "-", "*", "/", "%" };
+            string[] operators = { "+", "-", "*", "/", "%", "^", "√" };
             Stack<int> numbers = new Stack<int>();
 
             foreach (string word in words)
@@ -133,7 +129,6 @@ namespace RomanNumeralsCalculator.Classes
                 else
                 {
                     ChooseOperator(word, ref numbers);
-                    RomanNumeral rn = new RomanNumeral(numbers.Peek());
                 }
             }
 

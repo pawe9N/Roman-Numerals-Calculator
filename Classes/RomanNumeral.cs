@@ -25,14 +25,15 @@ namespace RomanNumeralsCalculator.Classes
             romanNumeralStr = romanSymbols;
         }
 
+        public RomanNumeral(RomanNumeral romanNumeral)
+        {
+            this.decimalNumber = romanNumeral.decimalNumber;
+            this.romanNumeralStr = romanNumeral.romanNumeralStr;
+        }
+
         public static RomanNumeral operator+(RomanNumeral a, RomanNumeral b)
         {
             return new RomanNumeral(RNConverter.ConvertFromIntToRomanNumeral(a.decimalNumber + b.decimalNumber));
-        }
-
-        public static RomanNumeral Add(RomanNumeral a, RomanNumeral b)
-        {
-            return a + b;
         }
 
         public static RomanNumeral operator-(RomanNumeral a, RomanNumeral b)
@@ -53,6 +54,16 @@ namespace RomanNumeralsCalculator.Classes
         public static RomanNumeral operator %(RomanNumeral a, RomanNumeral b)
         {
             return new RomanNumeral(RNConverter.ConvertFromIntToRomanNumeral(a.decimalNumber % b.decimalNumber));
+        }
+
+        public static RomanNumeral operator ^(RomanNumeral a, RomanNumeral b)
+        {
+            return new RomanNumeral(RNConverter.ConvertFromIntToRomanNumeral((int)Math.Pow(a.decimalNumber, b.decimalNumber)));
+        }
+
+        public static RomanNumeral Sqrt(RomanNumeral a)
+        {
+            return new RomanNumeral(RNConverter.ConvertFromIntToRomanNumeral((int)Math.Sqrt(a.decimalNumber)));
         }
     }
 }

@@ -21,5 +21,14 @@ namespace RomanNumeralsCalculator.Tests
 
             Assert.AreEqual(expected, result);
         }
+
+        [TestCase("XX+V", "XX + V")]
+        [TestCase("XX                   + V", "XX + V")]
+        public void AddWhitespacesBetweenOperators_ValidExpression_ReturnExpressionWithWhitespaces(string expression, string expected)
+        {
+            string result = RomanExpression.AddWhitespacesBetweenOperators(expression);
+
+            Assert.AreEqual(expected, result);
+        }
     }
 }
