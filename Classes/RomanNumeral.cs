@@ -59,7 +59,15 @@ namespace RomanNumeralsCalculator.Classes
 
         public static RomanNumeral Sqrt(RomanNumeral a)
         {
-            return new RomanNumeral(RNConverter.ConvertFromIntToRomanNumeral((int)Math.Sqrt(a.decimalNumber)));
+            int sqrtResult = (int)Math.Sqrt(a.decimalNumber);
+            if(sqrtResult*sqrtResult == a.decimalNumber)
+            {
+                return new RomanNumeral(RNConverter.ConvertFromIntToRomanNumeral((int)Math.Sqrt(a.decimalNumber)));
+            }
+            else
+            {
+                throw new Exception($"{a.decimalNumber} doesn't have an integer root!");
+            }
         }
     }
 }

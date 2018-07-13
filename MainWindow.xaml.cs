@@ -2,8 +2,11 @@
 using System;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 
 namespace RomanNumeralsCalculator
 {
@@ -15,6 +18,7 @@ namespace RomanNumeralsCalculator
         public MainWindow()
         {
             InitializeComponent();
+            ExpressionBox.Focus();
 
             CloseWindowWhileRunningTestsInDebugMode();
         }
@@ -32,27 +36,63 @@ namespace RomanNumeralsCalculator
             Button btn = (Button)sender;
             string content = btn.Content.ToString();
 
-            string[] operators = { "+", "-", "*", "/", "%", "^", "√" };
-            if (operators.Contains(content))
+            if (ExpressionBox.SelectedText.Length > 0)
             {
-                ExpressionBox.Text += $" {content} ";
+                ExpressionBox.SelectedText = content;
+
+                Regex trimmer = new Regex(@"\s\s+");
+                ExpressionBox.Text = trimmer.Replace(ExpressionBox.Text, " ");
+                
+                ExpressionBox.Select(0,0);
+                int caretLength = ExpressionBox.Text.Length;
+                ExpressionBox.CaretIndex = caretLength;
             }
             else
             {
-                ExpressionBox.Text += content;
+                string[] operators = { "+", "-", "*", "/", "%", "^", "√" };
+                if (operators.Contains(content))
+                {
+                    ExpressionBox.Text = ExpressionBox.Text.Insert(ExpressionBox.CaretIndex, $" {content} ");
+                    int caretLength = ExpressionBox.Text.Length;
+                    ExpressionBox.CaretIndex = caretLength + 3;
+                }
+                else
+                {
+                    ExpressionBox.Text = ExpressionBox.Text.Insert(ExpressionBox.CaretIndex, content);
+                    int caretLength = ExpressionBox.Text.Length;
+                    ExpressionBox.CaretIndex = caretLength + 1;
+                }
+
+                Regex trimmer = new Regex(@"\s\s+");
+                ExpressionBox.Text = trimmer.Replace(ExpressionBox.Text, " ");
             }
+
+            ExpressionBox.Focus();
         }
 
         private void CancelSymbol(object sender, RoutedEventArgs e)
         {
-            string expression = ExpressionBox.Text.TrimEnd();
-
-            if(expression.Length > 0)
+            if(ExpressionBox.SelectedText.Length > 0)
             {
-                expression = expression.Substring(0, expression.Length - 1);
-            }
+                ExpressionBox.SelectedText = "";
 
-            ExpressionBox.Text = expression;
+                Regex trimmer = new Regex(@"\s\s+");
+                ExpressionBox.Text = trimmer.Replace(ExpressionBox.Text, " ");
+
+                int caretLength = ExpressionBox.Text.Length;
+                ExpressionBox.CaretIndex = caretLength + 1;
+            }
+            else
+            {
+                string expression = ExpressionBox.Text.TrimEnd();
+
+                if (expression.Length > 0)
+                {
+                    expression = expression.Substring(0, expression.Length - 1);
+                }
+
+                ExpressionBox.Text = expression;
+            }        
         }
 
         private void SolveExpression(object sender, RoutedEventArgs e)
@@ -67,17 +107,34 @@ namespace RomanNumeralsCalculator
                 {
                     result.Append(RomanExpressionSolver.Solve(expression));
                     ResultLabelText.FontSize = 100;
+                    ResultLabelText.Foreground = new SolidColorBrush(Colors.Black);
                 }
-                catch (ArgumentException ex)
+                catch (Exception ex)
                 {
-                    result.Append(expression + ": " + ex.Message);
+                    result.Append(expression + " : " + ex.Message);
                     ResultLabelText.FontSize = 16;
+                    ResultLabelText.Foreground = new SolidColorBrush(Colors.Red);
                 }
 
                 ExpressionBox.Text = "";
                 ResultLabelText.Text = result.ToString();
-                LastExpressionText.Text = expression;
+                LastExpressionText.Text = $"Last expression: {expression}";
+                ExpressionBox.Focus();
             }
         }
+
+        private void KeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                SolveExpression(sender, e);
+            }
+            else if (e.Key == Key.Escape)
+            {
+                CancelSymbol(sender, e);
+            }
+        }
+
+
     }
 }

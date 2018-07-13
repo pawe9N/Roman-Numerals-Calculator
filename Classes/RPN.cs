@@ -122,8 +122,15 @@ namespace RomanNumeralsCalculator.Classes
             {
                 if (!operators.Contains(word))
                 {
-                    int number = Int32.Parse(word);
-                    numbers.Push(number);
+                    try
+                    {
+                        int number = Int32.Parse(word);
+                        numbers.Push(number);
+                    }
+                    catch(FormatException)
+                    {
+                        throw new FormatException("Niepoprawne wyrażenie!");
+                    }
                 }
                 else
                 {

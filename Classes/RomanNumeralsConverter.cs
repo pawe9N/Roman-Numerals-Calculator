@@ -81,7 +81,7 @@ namespace RomanNumeralsCalculator.Classes
 
             if (sameSymbolInRow == TOO_MANY_SYMBOLS_IN_ROW)
             {
-                throw new ArgumentException("This isn't roman numeral! It has too many these same symbols in row!");
+                throw new ArgumentException("This isn't roman numeral! It has too many of the same symbols in row!");
             }
 
             previousSymbol = digit;
@@ -104,7 +104,7 @@ namespace RomanNumeralsCalculator.Classes
                 {
                     case 5:
                     case 50:
-                    case 500: throw new ArgumentException("This isn't roman numeral! It has too many these same symbols in row!");
+                    case 500: throw new ArgumentException("This isn't roman numeral! It has too many of the same symbols in row!");
                 }
             }
         }
