@@ -5,8 +5,69 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RomanNumeralsCalculator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Roman Numerals Calculator" Height="800" Width="480">
+    <StackPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="260"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <Label Name="ResultLabel" Grid.Row="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" FontSize="100">
+                <AccessText Name="ResultLabelText" TextWrapping="WrapWithOverflow" Text="Result"/>
+            </Label>
+            <Label Name="LastExpression" Grid.Row="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16">
+                <AccessText Name="LastExpressionText" Foreground="Silver" TextWrapping="WrapWithOverflow" Text="LastExpression"/>
+            </Label>
+            <TextBox Name="ExpressionBox" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30" Margin="50,0"></TextBox>
         
-    </Grid>
+        </Grid>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Button Grid.Row="2" Grid.Column="1" Content="I" FontSize="24" Click="PutContent"/>
+            <Button Grid.Row="2" Grid.Column="2" Content="V" FontSize="24" Click="PutContent"/>
+            <Button Grid.Row="2" Grid.Column="3" Content="X" FontSize="24" Click="PutContent"/>
+            <Button Grid.Row="3" Grid.Column="1" Content="L" FontSize="24" Click="PutContent"/>
+            <Button Grid.Row="3" Grid.Column="2" Content="C" FontSize="24" Click="PutContent"/>
+            <Button Grid.Row="3" Grid.Column="3" Content="D" FontSize="24" Click="PutContent"/>
+            <Button Grid.Row="4" Grid.Column="2" Content="M" FontSize="24" Click="PutContent"/>
+
+            <Button Grid.Row="1" Grid.Column="5" Content="=" FontSize="24" Click="SolveExpression"/>
+            <Button Grid.Row="2" Grid.Column="5" Content="AC" FontSize="24" Click="CancelSymbol"/>
+            <Button Grid.Row="3" Grid.Column="5" Content="(" FontSize="24"  Click="PutContent"/>
+            <Button Grid.Row="4" Grid.Column="5" Content=")" FontSize="24"  Click="PutContent"/>
+
+            <Button Grid.Row="2" Grid.Column="7" Content="+" FontSize="24" Click="PutContent"/>
+            <Button Grid.Row="2" Grid.Column="8" Content="-" FontSize="24" Click="PutContent"/>
+            <Button Grid.Row="2" Grid.Column="9" Content="*" FontSize="24" Click="PutContent"/>
+            <Button Grid.Row="3" Grid.Column="7" Content="/" FontSize="24" Click="PutContent"/>
+            <Button Grid.Row="3" Grid.Column="8" Content="%" FontSize="24" Click="PutContent"/>
+            <Button Grid.Row="3" Grid.Column="9" Content="^" FontSize="24" Click="PutContent"/>
+            <Button Grid.Row="4" Grid.Column="8" Content="√" FontSize="24" Click="PutContent"/>
+        
+        </Grid>
+    </StackPanel>
 </Window>

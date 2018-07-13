@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace RomanNumeralsCalculator.Classes
 {
@@ -100,6 +97,15 @@ namespace RomanNumeralsCalculator.Classes
                     {
                         throw new ArgumentException("This isn't roman numeral! It has bad format of symbols positions in it!");
                     }
+            }
+            else if(digit == nextDigit)
+            {
+                switch(digit)
+                {
+                    case 5:
+                    case 50:
+                    case 500: throw new ArgumentException("This isn't roman numeral! It has too many these same symbols in row!");
+                }
             }
         }
 

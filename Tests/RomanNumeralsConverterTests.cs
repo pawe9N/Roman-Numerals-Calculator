@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using RomanNumeralsCalculator.Classes;
+using System;
 
 namespace RomanNumeralsCalculator.Tests
 {
@@ -83,6 +79,7 @@ namespace RomanNumeralsCalculator.Tests
         [TestCase("XXXX")]
         [TestCase("MXXXX")]
         [TestCase("MMMCCCCVVIII")]
+        [TestCase("VV")]
         public void ConvertFromRomanNumeralToInt_SendRomanNumeralsWithTooManyTheSameSymbols_Throws(string invalidRomanNumeral)
         {
             RomanNumeralsConverter conv = new RomanNumeralsConverter();

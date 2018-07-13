@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using RomanNumeralsCalculator.Classes;
+using System;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace RomanNumeralsCalculator
 {
@@ -33,6 +25,59 @@ namespace RomanNumeralsCalculator
             #if TEST
                 App.Current.MainWindow.Close();
             #endif
+        }
+
+        private void PutContent(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+            string content = btn.Content.ToString();
+
+            string[] operators = { "+", "-", "*", "/", "%", "^", "√" };
+            if (operators.Contains(content))
+            {
+                ExpressionBox.Text += $" {content} ";
+            }
+            else
+            {
+                ExpressionBox.Text += content;
+            }
+        }
+
+        private void CancelSymbol(object sender, RoutedEventArgs e)
+        {
+            string expression = ExpressionBox.Text.TrimEnd();
+
+            if(expression.Length > 0)
+            {
+                expression = expression.Substring(0, expression.Length - 1);
+            }
+
+            ExpressionBox.Text = expression;
+        }
+
+        private void SolveExpression(object sender, RoutedEventArgs e)
+        {
+            string expression = ExpressionBox.Text.TrimEnd();
+
+            if(!string.IsNullOrEmpty(expression))
+            {
+                StringBuilder result = new StringBuilder();
+
+                try
+                {
+                    result.Append(RomanExpressionSolver.Solve(expression));
+                    ResultLabelText.FontSize = 100;
+                }
+                catch (ArgumentException ex)
+                {
+                    result.Append(expression + ": " + ex.Message);
+                    ResultLabelText.FontSize = 16;
+                }
+
+                ExpressionBox.Text = "";
+                ResultLabelText.Text = result.ToString();
+                LastExpressionText.Text = expression;
+            }
         }
     }
 }
