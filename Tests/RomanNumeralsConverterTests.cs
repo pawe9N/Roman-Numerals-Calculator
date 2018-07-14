@@ -86,7 +86,7 @@ namespace RomanNumeralsCalculator.Tests
 
             var ex = Assert.Throws<ArgumentException>(() => conv.ConvertFromRomanNumeralToInt(invalidRomanNumeral));
 
-            StringAssert.Contains("too many these same symbols in row", ex.Message);
+            StringAssert.Contains("too many of the same symbols in row", ex.Message);
         }
 
         [TestCase("XM")]
