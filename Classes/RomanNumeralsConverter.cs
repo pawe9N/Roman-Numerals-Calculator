@@ -68,9 +68,9 @@ namespace RomanNumeralsCalculator.Classes
             return NOT_ROMAN_SYMBOL;
         }
 
-        private void CheckHowManyTimesSymbolInRow(ref int previousSymbol, ref int sameSymbolInRow, int digit)
+        private void CheckHowManyTimesSymbolInRow(ref int previousDigit, ref int sameSymbolInRow, int digit)
         {
-            if(previousSymbol == digit)
+            if(previousDigit == digit)
             {
                 sameSymbolInRow++;
             }
@@ -84,7 +84,7 @@ namespace RomanNumeralsCalculator.Classes
                 throw new ArgumentException("This isn't roman numeral! It has too many of the same symbols in row!");
             }
 
-            previousSymbol = digit;
+            previousDigit = digit;
         }
 
         private void CheckIfSymbolCanStandOnItsPosition(int digit, int nextDigit)
@@ -117,7 +117,7 @@ namespace RomanNumeralsCalculator.Classes
             }
 
             int result = 0;
-            int previousSymbol = ConvertRomanSymbolToInt(romanNumeralStr[0]);
+            int previousDigit = ConvertRomanSymbolToInt(romanNumeralStr[0]);
             int sameSymbolInRow = 1;
 
             int digit = 0,  nextDigit = 0 ;
@@ -130,11 +130,17 @@ namespace RomanNumeralsCalculator.Classes
                 {
                     nextDigit = ConvertRomanSymbolToInt(romanNumeralStr[i + 1]);
                     CheckIfSymbolCanStandOnItsPosition(digit, nextDigit);
+
+
+                    if (i != 0 && digit != previousDigit && previousDigit == nextDigit && (nextDigit - digit) % 9 != 0)
+                    {
+                        throw new ArgumentException("This isn't roman numeral! It has bad format of symbols positions in it!");
+                    }
                 }
 
                 if (i>0)
                 {
-                    CheckHowManyTimesSymbolInRow(ref previousSymbol, ref sameSymbolInRow, digit);
+                    CheckHowManyTimesSymbolInRow(ref previousDigit, ref sameSymbolInRow, digit);
                 }
 
 
@@ -151,12 +157,12 @@ namespace RomanNumeralsCalculator.Classes
 
                         if (i + 1 < romanNumeralStr.Length)
                         {
-                            previousSymbol = digit;
+                            previousDigit = digit;
                             digit = nextDigit;
                             nextDigit = ConvertRomanSymbolToInt(romanNumeralStr[i + 1]);
                             CheckIfSymbolCanStandOnItsPosition(digit, nextDigit);
 
-                            if(previousSymbol == nextDigit)
+                            if(previousDigit == nextDigit)
                             {
                                 throw new ArgumentException("This isn't roman numeral! It has bad format of symbols positions in it!");
                             }
