@@ -89,9 +89,15 @@ namespace RomanNumeralsCalculator
                 if (expression.Length > 0)
                 {
                     expression = expression.Substring(0, expression.Length - 1);
-                }
 
-                ExpressionBox.Text = expression;
+                    Regex trimmer = new Regex(@"\s\s+");
+                    expression = trimmer.Replace(expression, " ");
+
+                    int caretLength = expression.Length;
+
+                    ExpressionBox.Text = expression;
+                    ExpressionBox.CaretIndex = caretLength + 1;                
+                }
             }        
         }
 
@@ -106,8 +112,8 @@ namespace RomanNumeralsCalculator
                 try
                 {
                     result.Append(RomanExpressionSolver.Solve(expression));
-                    ResultLabelText.FontSize = 100;
-                    ResultLabelText.Foreground = new SolidColorBrush(Colors.Black);
+                    ResultLabelText.FontSize = 70;
+                    ResultLabelText.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#250D71"));
                 }
                 catch (Exception ex)
                 {

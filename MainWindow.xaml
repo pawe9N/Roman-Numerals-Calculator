@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RomanNumeralsCalculator"
         mc:Ignorable="d"
         Title="Roman Numerals Calculator" Height="800" Width="480">
-    <StackPanel>
+    <StackPanel Background="#644BB4">
 
         <Grid>
             <Grid.RowDefinitions>
@@ -15,13 +15,13 @@
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
 
-            <Label Name="ResultLabel" Grid.Row="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" FontSize="100">
-                <AccessText Name="ResultLabelText" TextWrapping="WrapWithOverflow" Text="_________"/>
+            <Label Name="ResultLabel" Background="#8873CB" Grid.Row="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" FontSize="70">
+                <AccessText Foreground="#250D71" Name="ResultLabelText" TextWrapping="WrapWithOverflow" Text="_________" TextAlignment="Center"/>
             </Label>
-            <Label Name="LastExpression" Grid.Row="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16">
-                <AccessText Name="LastExpressionText" Foreground="Silver" TextWrapping="WrapWithOverflow" Text="Last expression:"/>
+            <Label Name="LastExpression" Grid.Row="1" Foreground="#8873CB"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16">
+                <AccessText Name="LastExpressionText" Foreground="#8873CB" TextWrapping="WrapWithOverflow" Text="Last expression:"/>
             </Label>
-            <TextBox Name="ExpressionBox"  KeyDown="KeyDownHandler" Grid.Row="2" BorderBrush="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30" Margin="50,0"></TextBox>
+            <TextBox Name="ExpressionBox" Background="#8873CB" Foreground="#250D71"  KeyDown="KeyDownHandler" Grid.Row="2" BorderBrush="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30" Margin="50,0"></TextBox>
         
         </Grid>
 
@@ -47,28 +47,35 @@
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
-            <Button Grid.Row="2" Grid.Column="1" Content="I" FontSize="24" Click="PutContent"/>
-            <Button Grid.Row="2" Grid.Column="2" Content="V" FontSize="24" Click="PutContent"/>
-            <Button Grid.Row="2" Grid.Column="3" Content="X" FontSize="24" Click="PutContent"/>
-            <Button Grid.Row="3" Grid.Column="1" Content="L" FontSize="24" Click="PutContent"/>
-            <Button Grid.Row="3" Grid.Column="2" Content="C" FontSize="24" Click="PutContent"/>
-            <Button Grid.Row="3" Grid.Column="3" Content="D" FontSize="24" Click="PutContent"/>
-            <Button Grid.Row="4" Grid.Column="2" Content="M" FontSize="24" Click="PutContent"/>
 
-            <Button Grid.Row="1" Grid.Column="5" Content="=" FontSize="24" Click="SolveExpression"/>
-            <Button Grid.Row="2" Grid.Column="5" Content="AC" FontSize="24" Click="CancelSymbol"/>
-            <Button Grid.Row="3" Grid.Column="5" Content="(" FontSize="24"  Click="PutContent"/>
-            <Button Grid.Row="4" Grid.Column="5" Content=")" FontSize="24"  Click="PutContent"/>
+            <Button Background="#8873CB" Foreground="#250D71" Grid.Row="2" Grid.Column="1" Content="I" FontSize="24" Click="PutContent"/>
+            <Button Background="#8873CB" Foreground="#250D71" Grid.Row="2" Grid.Column="2" Content="V" FontSize="24" Click="PutContent"/>
+            <Button Background="#8873CB" Foreground="#250D71" Grid.Row="2" Grid.Column="3" Content="X" FontSize="24" Click="PutContent"/>
+            <Button Background="#8873CB" Foreground="#250D71" Grid.Row="3" Grid.Column="1" Content="L" FontSize="24" Click="PutContent"/>
+            <Button Background="#8873CB" Foreground="#250D71" Grid.Row="3" Grid.Column="2" Content="C" FontSize="24" Click="PutContent"/>
+            <Button Background="#8873CB" Foreground="#250D71" Grid.Row="3" Grid.Column="3" Content="D" FontSize="24" Click="PutContent"/>
+            <Button Background="#8873CB" Foreground="#250D71" Grid.Row="4" Grid.Column="2" Content="M" FontSize="24" Click="PutContent"/>
 
-            <Button Grid.Row="2" Grid.Column="7" Content="+" FontSize="24" Click="PutContent"/>
-            <Button Grid.Row="2" Grid.Column="8" Content="-" FontSize="24" Click="PutContent"/>
-            <Button Grid.Row="2" Grid.Column="9" Content="*" FontSize="24" Click="PutContent"/>
-            <Button Grid.Row="3" Grid.Column="7" Content="/" FontSize="24" Click="PutContent"/>
-            <Button Grid.Row="3" Grid.Column="8" Content="%" FontSize="24" Click="PutContent"/>
-            <Button Grid.Row="3" Grid.Column="9" Content="^" FontSize="24" Click="PutContent"/>
-            <Button Grid.Row="4" Grid.Column="8" Content="√" FontSize="24" Click="PutContent"/>
+            <Button Background="#8873CB" Foreground="#250D71" Grid.Row="1" Grid.Column="5" Content="=" FontSize="24" Click="SolveExpression"/>
+            <Button Background="#8873CB" Foreground="#250D71" Grid.Row="2" Grid.Column="5" Content="AC" FontSize="24" Click="CancelSymbol"/>
+            <Button Background="#8873CB" Foreground="#250D71" Grid.Row="3" Grid.Column="5" Content="(" FontSize="24"  Click="PutContent"/>
+            <Button Background="#8873CB" Foreground="#250D71" Grid.Row="4" Grid.Column="5" Content=")" FontSize="24"  Click="PutContent"/>
+
+            <Button Background="#8873CB" Foreground="#250D71" Grid.Row="2" Grid.Column="7" Content="+" FontSize="24" Click="PutContent"/>
+            <Button Background="#8873CB" Foreground="#250D71" Grid.Row="2" Grid.Column="8" Content="-" FontSize="24" Click="PutContent"/>
+            <Button Background="#8873CB" Foreground="#250D71" Grid.Row="2" Grid.Column="9" Content="*" FontSize="24" Click="PutContent"/>
+            <Button Background="#8873CB" Foreground="#250D71" Grid.Row="3" Grid.Column="7" Content="/" FontSize="24" Click="PutContent"/>
+            <Button Background="#8873CB" Foreground="#250D71" Grid.Row="3" Grid.Column="8" Content="%" FontSize="24" Click="PutContent"/>
+            <Button Background="#8873CB" Foreground="#250D71" Grid.Row="3" Grid.Column="9" Content="^" FontSize="24" Click="PutContent"/>
+            <Button Background="#8873CB" Foreground="#250D71" Grid.Row="4" Grid.Column="8" Content="√" FontSize="24" Click="PutContent"/>
         
         </Grid>
+
+        <Rectangle HorizontalAlignment="Stretch" Fill="#8873CB" Height="4"/>
+
+        <Label FontWeight="SemiBold" Margin="30,30" Foreground="#250D71" Background="#8873CB" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30">
+            Roman Numerals Calculator
+        </Label>
+        
     </StackPanel>
 </Window>
