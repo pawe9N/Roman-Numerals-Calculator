@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RomanNumeralsCalculator"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Title="Roman Numerals Calculator" Height="800" Width="480">
     <StackPanel Background="#644BB4">
 

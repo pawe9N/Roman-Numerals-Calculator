@@ -126,17 +126,17 @@ namespace RomanNumeralsCalculator.Classes
             {
                 digit = ConvertRomanSymbolToInt(romanNumeralStr[i]);
 
-                if(i>0)
-                {
-                    CheckHowManyTimesSymbolInRow(ref previousSymbol, ref sameSymbolInRow, digit);
-                }
-
-
                 if (i + 1 < romanNumeralStr.Length)
                 {
                     nextDigit = ConvertRomanSymbolToInt(romanNumeralStr[i + 1]);
                     CheckIfSymbolCanStandOnItsPosition(digit, nextDigit);
                 }
+
+                if (i>0)
+                {
+                    CheckHowManyTimesSymbolInRow(ref previousSymbol, ref sameSymbolInRow, digit);
+                }
+
 
                 if (digit != NOT_ROMAN_SYMBOL)
                 {
@@ -148,6 +148,21 @@ namespace RomanNumeralsCalculator.Classes
                     {
                         result += nextDigit - digit;
                         i++;
+
+                        if (i + 1 < romanNumeralStr.Length)
+                        {
+                            previousSymbol = digit;
+                            digit = nextDigit;
+                            nextDigit = ConvertRomanSymbolToInt(romanNumeralStr[i + 1]);
+                            CheckIfSymbolCanStandOnItsPosition(digit, nextDigit);
+
+                            if(previousSymbol == nextDigit)
+                            {
+                                throw new ArgumentException("This isn't roman numeral! It has bad format of symbols positions in it!");
+                            }
+
+                        }
+
                     }
                 }
                 else

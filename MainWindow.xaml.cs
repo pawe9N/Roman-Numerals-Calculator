@@ -113,13 +113,15 @@ namespace RomanNumeralsCalculator
                 {
                     result.Append(RomanExpressionSolver.Solve(expression));
                     ResultLabelText.FontSize = 70;
+                    ResultLabelText.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#8873CB"));
                     ResultLabelText.Foreground = (SolidColorBrush)(new BrushConverter().ConvertFrom("#250D71"));
                 }
                 catch (Exception ex)
                 {
                     result.Append(expression + " : " + ex.Message);
                     ResultLabelText.FontSize = 16;
-                    ResultLabelText.Foreground = new SolidColorBrush(Colors.Red);
+                    ResultLabelText.Background = new SolidColorBrush(Colors.Red);
+                    ResultLabelText.Foreground = new SolidColorBrush(Colors.White);
                 }
 
                 ExpressionBox.Text = "";

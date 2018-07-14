@@ -92,6 +92,8 @@ namespace RomanNumeralsCalculator.Tests
         [TestCase("XM")]
         [TestCase("IM")]
         [TestCase("VML")]
+        [TestCase("IXI")]
+        [TestCase("IVI")]
         public void ConvertFromRomanNumeralToInt_SendRomanNumeralsWithBadSymbolsPosition_Throws(string invalidRomanNumeral)
         {
             RomanNumeralsConverter conv = new RomanNumeralsConverter();
