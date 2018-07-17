@@ -1,5 +1,5 @@
 # RomanNumeralsCalculator
-This app was created for purpose of learning C#, unit tests (NUnit) and UWP applications. 
+This app was created for purpose of learning C#, unit tests (NUnit) and WPF. 
 
 ## Description of application
 It can calculate expressions with roman numerals in the range of numbers (1-3999) with basic operators (+, -, *, /, ^, √). 
