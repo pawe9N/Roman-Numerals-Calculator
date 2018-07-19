@@ -1,4 +1,4 @@
-# RomanNumeralsCalculator
+# Roman Numerals Calculator
 This app was created for purpose of learning C#, unit tests (NUnit) and WPF. 
 
 ## Description of application
